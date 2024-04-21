@@ -11,6 +11,15 @@ use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
 {
+    public function __construct()
+    {
+
+       $this->middleware(['auth','role:admin'])->except('show');
+       // ila knti user ghzdi tchof gha about bohdha
+       // user->  about
+       // admin -> all
+
+   }
     public function index()
     {
         $Articles=Article::all();

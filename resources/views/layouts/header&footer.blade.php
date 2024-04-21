@@ -122,7 +122,7 @@
     @foreach ($Settings as $item )
     <nav class="navbar navbar-expand-lg main_menu">
         <div class="container container_large">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="/">
                 <img src="{{ asset('storage/' . $item->logo) }}" alt="RESTINA" class="img-fluid w-100">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -182,11 +182,12 @@
     </nav>
    
     <div class="menu_search_area">
-        <form>
-            <input type="text" placeholder="Search Item...">
-            <button class="common_btn" type="submit">Search</button>
+        <form method="get"  action="/search">
+            <input type="search" name="search" placeholder="Search Item..." value="{{isset($search)? $search : ''}}">
+            <button class="common_btn" type="submit" value="Search">Search</button>
             <span class="close_search"><i class="far fa-times"></i></span>
         </form>
+        
     </div>
 
     @endforeach

@@ -126,19 +126,19 @@
 
 
                     </div>
-                    <div class="pagination_area mt_35 xs_mb_60 wow fadeInUp">
+                    <div class="pagination_area mt_60 wow fadeInUp">
                         <nav aria-label="Page navigation example">
                             <ul class="pagination justify-content-center">
                                 <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
+                                    <a class="page-link" href="{{ $products->previousPageUrl() }}" aria-label="Previous">
                                         <i class="far fa-arrow-left"></i>
                                     </a>
                                 </li>
-                                <li class="page-item"><a class="page-link active" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                @foreach ($products->getUrlRange(1, $products->lastPage()) as $page => $url)
+                                <li class="page-item"><a class="page-link{{ $products->currentPage() === $page ? ' active' : '' }}" href="{{ $url }}">{{ $page }}</a></li>
+                                @endforeach
                                 <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
+                                    <a class="page-link" href="{{ $products->nextPageUrl() }}" aria-label="Next">
                                         <i class="far fa-arrow-right"></i>
                                     </a>
                                 </li>

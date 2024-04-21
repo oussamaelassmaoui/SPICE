@@ -20,6 +20,10 @@ class CategoryController extends Controller
     //     $this->middleware(['auth','role:admin']);
        
     // }
+    public function __construct()
+    {
+       $this->middleware(['auth','role:admin'])->except('show');
+   }
     public function index()
     {
         $Categories=Category::all();
@@ -67,7 +71,7 @@ class CategoryController extends Controller
         }
         $category = Category::findOrfail($id);
         
-        $products =  $category->product()->get();
+        $products =  $category->product()->paginate(21);
         $Categories=Category::all();
         $Information=Information::paginate(1);
         $Settings=Setting::paginate(1);

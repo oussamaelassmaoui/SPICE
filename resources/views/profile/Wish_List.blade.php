@@ -13,7 +13,7 @@
                     <div class="breadcrumb_text">
                         <h1>wishlist</h1>
                         <ul>
-                            <li><a href="#">Home </a></li>
+                            <li><a href="/">Home </a></li>
                             <li><a href="#">wishlist</a></li>
                         </ul>
                     </div>
@@ -141,15 +141,15 @@
                         <nav aria-label="Page navigation example">
                             <ul class="pagination justify-content-center">
                                 <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
+                                    <a class="page-link" href="{{ $wishlistItems->previousPageUrl() }}" aria-label="Previous">
                                         <i class="far fa-arrow-left"></i>
                                     </a>
                                 </li>
-                                <li class="page-item"><a class="page-link active" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                @foreach ($wishlistItems->getUrlRange(1, $wishlistItems->lastPage()) as $page => $url)
+                                <li class="page-item"><a class="page-link{{ $wishlistItems->currentPage() === $page ? ' active' : '' }}" href="{{ $url }}">{{ $page }}</a></li>
+                                @endforeach
                                 <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
+                                    <a class="page-link" href="{{ $wishlistItems->nextPageUrl() }}" aria-label="Next">
                                         <i class="far fa-arrow-right"></i>
                                     </a>
                                 </li>

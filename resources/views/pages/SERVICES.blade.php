@@ -54,9 +54,28 @@
                     </div>
                 </div>
                 @empty
-                    
+                    <h4>No Data Found!</h4>
                 @endforelse
                
+            </div>
+            <div class="pagination_area mt_60 wow fadeInUp">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item">
+                            <a class="page-link" href="{{ $SERVICES->previousPageUrl() }}" aria-label="Previous">
+                                <i class="far fa-arrow-left"></i>
+                            </a>
+                        </li>
+                        @foreach ($SERVICES->getUrlRange(1, $SERVICES->lastPage()) as $page => $url)
+                        <li class="page-item"><a class="page-link{{ $SERVICES->currentPage() === $page ? ' active' : '' }}" href="{{ $url }}">{{ $page }}</a></li>
+                        @endforeach
+                        <li class="page-item">
+                            <a class="page-link" href="{{ $SERVICES->nextPageUrl() }}" aria-label="Next">
+                                <i class="far fa-arrow-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </section>

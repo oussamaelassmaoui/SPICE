@@ -15,6 +15,15 @@ class aboutController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function __construct()
+    {
+
+       $this->middleware(['auth','role:admin'])->except('list');
+       // ila knti user ghzdi tchof gha about bohdha
+       // user->  about
+       // admin -> all
+
+   }
     public function list(Request $request) {
         $totalCartCount = 0; // Default value
         if ($request->user()) {

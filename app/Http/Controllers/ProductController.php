@@ -18,6 +18,10 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function __construct()
+    {
+       $this->middleware(['auth','role:admin'])->except('show','search');
+   }
     public function index()
     {
         $products = Product::all();
@@ -94,7 +98,26 @@ class ProductController extends Controller
 
         return redirect()->route('products.index');
     }
-
+    public function search(Request $request){
+        $totalCartCount = 0; // Default value
+        if ($request->user()) {
+            $totalCartCount = $request->user()->cartItems()->count();
+        }
+        $products=Product::paginate(20);
+        $RECENT_PRODUCTS=Product::paginate(4);
+        $Information=Information::paginate(1);
+        $Settings=Setting::paginate(1);
+        $footers=Article::paginate(2);
+        $search =  $request->input('search');
+        $products= Product::where(function($query) use($search){
+            $query->where('name', 'like', "%$search%");
+        })->get();
+        $totalCartCount = 0; // Default value
+        $Categories=Category::all();
+        return view('pages.search_product',compact('products', 'RECENT_PRODUCTS','totalCartCount', 'Information', 'Settings','footers','search','products','Categories'));
+     
+      
+   }
    
     /**
      * Display the specified resource.

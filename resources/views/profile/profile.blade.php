@@ -15,7 +15,7 @@
                     <div class="breadcrumb_text">
                         <h1>personal info</h1>
                         <ul>
-                            <li><a href="#">Home </a></li>
+                            <li><a href="/">Home </a></li>
                             <li><a href="#">blog details</a></li>
                         </ul>
                     </div>
@@ -86,21 +86,21 @@
                                 <div class="col-xl-4 col-sm-6 wow fadeInUp">
                                     <div class="profile_overview_item">
                                         <span><i class="fas fa-shopping-basket"></i></span>
-                                        <h3>106</h3>
-                                        <p>Order Active</p>
+                                        <h3>{{$Total_wishlist}}</h3>
+                                        <p>Total Wishlist</p>
                                     </div>
                                 </div>
                                 <div class="col-xl-4 col-sm-6 wow fadeInUp">
                                     <div class="profile_overview_item">
                                         <span><i class="fas fa-box-check"></i></span>
-                                        <h3>256</h3>
+                                        <h3>{{$total_order}}</h3>
                                         <p>Order Completed</p>
                                     </div>
                                 </div>
                                 <div class="col-xl-4 col-sm-6 wow fadeInUp">
                                     <div class="profile_overview_item">
                                         <span><i class="fas fa-clipboard-list-check"></i></span>
-                                        <h3>395</h3>
+                                        <h3>{{$total_order}}</h3>
                                         <p>Total Order </p>
                                     </div>
                                 </div>

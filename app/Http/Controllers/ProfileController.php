@@ -21,6 +21,10 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(Request $request): View
     {
         $totalCartCount = 0; // Default value
@@ -30,9 +34,11 @@ class ProfileController extends Controller
         $Information=Information::paginate(1);
         $Settings=Setting::paginate(1);
         $footers=Article::paginate(2);
+        $total_order = $request->user()->orderItems()->with('Order')->count();
+        $Total_wishlist =$request->user()->wishlistItems()->with('product')->count();
         return view('profile.profile', [
             'user' => $request->user()
-        ],compact('totalCartCount','Information',"Settings","footers"));
+        ],compact('totalCartCount','Information',"Settings","footers", "total_order", "Total_wishlist"));
     }
 
     public function update_password(Request $request): View
@@ -74,7 +80,7 @@ class ProfileController extends Controller
         $Information=Information::paginate(1);
         $Settings=Setting::paginate(1);
         $footers=Article::paginate(2);
-        $OrderItems = $request->user()->orderItems()->with('Order')->get();
+        $OrderItems = $request->user()->orderItems()->with('Order')->paginate(10);
         return view('profile.My_Orders', compact('orders','OrderItems','totalCartCount','Information',"Settings","footers")
         
     );

@@ -131,6 +131,11 @@
                             </a>
                         </li>
                         <li class="menu-item">
+                            <a href="{{route('orders.index')}}" class="menu-link">
+                                orders
+                            </a>
+                        </li>
+                        <li class="menu-item">
                             <a href="{{route('sizes.index')}}" class="menu-link">
                                 size List
                             </a>

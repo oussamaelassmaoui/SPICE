@@ -15,7 +15,7 @@
                     <div class="breadcrumb_text">
                         <h1>dashboard order</h1>
                         <ul>
-                            <li><a href="#">Home </a></li>
+                            <li><a href="/">Home </a></li>
                             <li><a href="#">dashboard order</a></li>
                         </ul>
                     </div>
@@ -109,15 +109,15 @@
                         <nav aria-label="Page navigation example">
                             <ul class="pagination justify-content-center">
                                 <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
+                                    <a class="page-link" href="{{ $OrderItems->previousPageUrl() }}" aria-label="Previous">
                                         <i class="far fa-arrow-left"></i>
                                     </a>
                                 </li>
-                                <li class="page-item"><a class="page-link active" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                @foreach ($OrderItems->getUrlRange(1, $OrderItems->lastPage()) as $page => $url)
+                                <li class="page-item"><a class="page-link{{ $OrderItems->currentPage() === $page ? ' active' : '' }}" href="{{ $url }}">{{ $page }}</a></li>
+                                @endforeach
                                 <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
+                                    <a class="page-link" href="{{ $OrderItems->nextPageUrl() }}" aria-label="Next">
                                         <i class="far fa-arrow-right"></i>
                                     </a>
                                 </li>

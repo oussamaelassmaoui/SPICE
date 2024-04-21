@@ -13,13 +13,14 @@ class menuController extends Controller
     /**
      * Display a listing of the resource.
      */
+   
     public function index(Request $request)
     {
         $totalCartCount = 0; // Default value
         if ($request->user()) {
             $totalCartCount = $request->user()->cartItems()->count();
         }
-        $products=Product::all();
+        $products=Product::paginate(20);
         $RECENT_PRODUCTS=Product::paginate(4);
         $Information=Information::paginate(1);
         $Settings=Setting::paginate(1);

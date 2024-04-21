@@ -42,8 +42,9 @@ use App\Http\Controllers\termsConditionController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+Route::middleware('Visit')->group(function () {
 Route::get('/', [homeController::class, 'index'])->name('home');
+} );
 Route::get('/privacy_policy', [privacyPolicyController::class, 'index'])->name('privacy_policy');
 Route::get('/terms_condition', [termsConditionController::class, 'index'])->name('terms_condition');
 Route::post('/reviews', [ReviewController::class, 'store'])->middleware('auth')->name('reviews.store');
@@ -71,6 +72,7 @@ require __DIR__ . '/auth.php';
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
+    Route::get('/visit-chart-data', [AdminController::class, 'getVisitChartData'])->name('visit-chart-data');
 });
 
 
@@ -110,3 +112,5 @@ Route::resource('termsCondition',termsController::class);
 Route::get('/about_list', [aboutController::class ,'list'])->name('about_list');
 Route::resource('Home',SettingHomeController::class);
 Route::resource('Settings',SettingController::class);
+
+Route::get('/search',[ProductController::class, 'search']);

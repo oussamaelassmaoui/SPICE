@@ -19,7 +19,7 @@ class chefsController extends Controller
         if ($request->user()) {
             $totalCartCount = $request->user()->cartItems()->count();
         }
-        $chefs=chef::all();
+        $chefs=chef::paginate(20);
         $Information=Information::paginate(1);
         $Settings=Setting::paginate(1);
         $footers=Article::paginate(2);

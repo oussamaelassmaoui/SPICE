@@ -15,7 +15,7 @@
                     <div class="breadcrumb_text">
                         <h1>Supprimer le compte</h1>
                         <ul>
-                            <li><a href="#">Home </a></li>
+                            <li><a href="/">Home </a></li>
                             <li><a href="#">Supprimer le compte</a></li>
                         </ul>
                     </div>

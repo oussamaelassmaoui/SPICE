@@ -13,6 +13,10 @@ class SERVICESController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function __construct()
+    {
+       $this->middleware(['auth','role:admin'])->except('list','show');
+   }
     public function index()
     {
         $SERVICES=Services::all();
@@ -26,7 +30,7 @@ class SERVICESController extends Controller
             $totalCartCount = $request->user()->cartItems()->count();
         }
         $Information=Information::paginate(1);
-        $SERVICES=Services::all();
+        $SERVICES=Services::paginate(21);
         $Settings=Setting::paginate(1);
         $footers=Article::paginate(2);
         return view('pages.SERVICES',compact('totalCartCount','SERVICES','Information',"Settings","footers"));

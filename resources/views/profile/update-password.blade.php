@@ -14,7 +14,7 @@
                     <div class="breadcrumb_text">
                         <h1>change password</h1>
                         <ul>
-                            <li><a href="#">Home </a></li>
+                            <li><a href="/">Home </a></li>
                             <li><a href="#">change password</a></li>
                         </ul>
                     </div>

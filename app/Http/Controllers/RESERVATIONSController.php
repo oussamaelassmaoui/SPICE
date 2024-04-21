@@ -14,6 +14,10 @@ class RESERVATIONSController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function __construct()
+    {
+       $this->middleware(['auth','role:admin'])->except('index');
+   }
     public function index(Request $request)
     {
         $totalCartCount = 0; // Default value

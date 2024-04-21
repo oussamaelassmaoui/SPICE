@@ -14,6 +14,10 @@ class WishlistController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(Request $request)
     {
         $totalCartCount = 0; // Default value
@@ -24,7 +28,7 @@ class WishlistController extends Controller
         $Settings=Setting::paginate(1);
         $footers=Article::paginate(2);
     // $wishlistItems = Wishlist::with('product')->get();
-    $wishlistItems =$request->user()->wishlistItems()->with('product')->get();
+    $wishlistItems =$request->user()->wishlistItems()->with('product')->paginate(21);
     return view('profile.Wish_List', compact('wishlistItems', 'totalCartCount', 'Information',"Settings","footers"));
     }
     public function addToWishlist(Product $product)

@@ -12,9 +12,10 @@ class BLOGSController extends Controller
     /**
      * Display a listing of the resource.
      */
+    
     public function index(Request $request)
     {
-        $Articles=Article::all();
+        $Articles=Article::paginate(21);
         $totalCartCount = 0; // Default value
         if ($request->user()) {
             $totalCartCount = $request->user()->cartItems()->count();

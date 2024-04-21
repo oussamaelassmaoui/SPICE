@@ -60,15 +60,15 @@
                     <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-center">
                             <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
+                                <a class="page-link" href="{{ $chefs->previousPageUrl() }}" aria-label="Previous">
                                     <i class="far fa-arrow-left"></i>
                                 </a>
                             </li>
-                            <li class="page-item"><a class="page-link active" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            @foreach ($chefs->getUrlRange(1, $chefs->lastPage()) as $page => $url)
+                            <li class="page-item"><a class="page-link{{ $chefs->currentPage() === $page ? ' active' : '' }}" href="{{ $url }}">{{ $page }}</a></li>
+                            @endforeach
                             <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
+                                <a class="page-link" href="{{ $chefs->nextPageUrl() }}" aria-label="Next">
                                     <i class="far fa-arrow-right"></i>
                                 </a>
                             </li>

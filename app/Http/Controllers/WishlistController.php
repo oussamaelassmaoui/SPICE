@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\Product;
+use App\Models\Setting;
 use App\Models\Wishlist;
+use App\Models\Information;
 use Illuminate\Http\Request;
 
 class WishlistController extends Controller
@@ -17,9 +20,12 @@ class WishlistController extends Controller
         if ($request->user()) {
             $totalCartCount = $request->user()->cartItems()->count();
         }
+        $Information=Information::paginate(1);
+        $Settings=Setting::paginate(1);
+        $footers=Article::paginate(2);
     // $wishlistItems = Wishlist::with('product')->get();
     $wishlistItems =$request->user()->wishlistItems()->with('product')->get();
-    return view('profile.Wish_List', compact('wishlistItems', 'totalCartCount'));
+    return view('profile.Wish_List', compact('wishlistItems', 'totalCartCount', 'Information',"Settings","footers"));
     }
     public function addToWishlist(Product $product)
     {

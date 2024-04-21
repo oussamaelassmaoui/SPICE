@@ -2,20 +2,30 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\Article;
+use App\Models\Setting;
+use Illuminate\View\View;
+use App\Models\Information;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
-use Illuminate\View\View;
 
 class PasswordResetLinkController extends Controller
 {
     /**
      * Display the password reset link request view.
      */
-    public function create(): View
+    public function create(Request $request): View
     {
-        return view('auth.forgot-password');
+        $totalCartCount = 0; // Default value
+        if ($request->user()) {
+            $totalCartCount = $request->user()->cartItems()->count();
+        }
+        $Information=Information::paginate(1);
+        $Settings=Setting::paginate(1);
+        $footers=Article::paginate(2);
+        return view('auth.forgot-password', compact('Settings','footers', 'Information','totalCartCount'));
     }
 
     /**

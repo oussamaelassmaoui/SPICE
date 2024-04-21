@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Article;
+use App\Models\Setting;
 use App\Models\Category;
+use App\Models\Information;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -66,8 +69,10 @@ class CategoryController extends Controller
         
         $products =  $category->product()->get();
         $Categories=Category::all();
-
-       return view('Categories.show', compact('category','products', 'Categories', 'totalCartCount'));
+        $Information=Information::paginate(1);
+        $Settings=Setting::paginate(1);
+        $footers=Article::paginate(2);
+       return view('Categories.show', compact('category','products', 'Categories', 'totalCartCount' ,'Information', 'footers','Settings'));
     }
   
     /**

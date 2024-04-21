@@ -15,17 +15,18 @@
     <!--==========================
         FORGOT PASSWORD START
     ===========================-->
+    @foreach ($Settings as $item )
     <section class="sign_up sign_in">
         <div class="row justify-content-center">
             <div class="col-xl-6 col-lg-6 wow fadeInLeft">
                 <div class="sign_in_img">
-                    <img src="Frontend/images/sign_in_img_1.jpg" alt="sign in" class="img-fluid w-100">
+                    <img src="{{ asset('storage/' . $item->Sign_Up_photo) }}" alt="sign in" class="img-fluid w-100">
                 </div>
             </div>
             <div class="col-xl-6 col-md-10 col-lg-6 wow fadeInRight">
                 <div class="sign_in_form">
                     <a class="sign_in_logo" href="index.html">
-                        <img src="Frontend/images/logo.png" alt="sign in" class="img-fluid w-100">
+                        <img src="{{ asset('storage/' . $item->logo) }}" alt="sign in" class="img-fluid w-100">
                     </a>
                     <h2>forgot password ?</h2>
                     <p class="description">Please Enter your Email Address for resat your password</p>
@@ -46,6 +47,7 @@
             </div>
         </div>
     </section>
+    @endforeach
     <!--==========================
         FORGOT PASSWORD END
     ===========================-->

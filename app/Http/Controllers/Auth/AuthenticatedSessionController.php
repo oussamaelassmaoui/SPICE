@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginRequest;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Article;
+use App\Models\Setting;
 use Illuminate\View\View;
+use App\Models\Information;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
+use App\Providers\RouteServiceProvider;
+use App\Http\Requests\Auth\LoginRequest;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -21,7 +24,10 @@ class AuthenticatedSessionController extends Controller
         if ($request->user()) {
             $totalCartCount = $request->user()->cartItems()->count();
         }
-        return view('auth.login',compact('totalCartCount'));
+        $Information=Information::paginate(1);
+        $Settings=Setting::paginate(1);
+        $footers=Article::paginate(2);
+        return view('auth.login',compact('totalCartCount', 'Information', 'Settings','footers'));
     }
 
     /**

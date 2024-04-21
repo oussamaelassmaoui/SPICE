@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\chef;
+use App\Models\Article;
+use App\Models\Setting;
+use App\Models\Information;
 use Illuminate\Http\Request;
 
 class chefsController extends Controller
@@ -15,7 +19,11 @@ class chefsController extends Controller
         if ($request->user()) {
             $totalCartCount = $request->user()->cartItems()->count();
         }
-        return view('pages.chefs',compact('totalCartCount'));
+        $chefs=chef::all();
+        $Information=Information::paginate(1);
+        $Settings=Setting::paginate(1);
+        $footers=Article::paginate(2);
+        return view('pages.chefs',compact('totalCartCount','chefs', 'Information', 'Settings','footers'));
     }
 
     /**

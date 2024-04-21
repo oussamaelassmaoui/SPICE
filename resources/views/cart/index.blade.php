@@ -2,8 +2,8 @@
 
 @section('content')
     <!--==========================
-                BREADCRUMB AREA START
-            ===========================-->
+                    BREADCRUMB AREA START
+                ===========================-->
     <section class="breadcrumb_area" style="background: url(Frontend/images/breadcrumb_bg.jpg);">
         <div class="container">
             <div class="row wow fadeInUp">
@@ -20,13 +20,13 @@
         </div>
     </section>
     <!--==========================
-                BREADCRUMB AREA END
-            ===========================-->
+                    BREADCRUMB AREA END
+                ===========================-->
 
 
     <!--==========================
-                CART VIEW START
-            ===========================-->
+                    CART VIEW START
+                ===========================-->
     <section class="cart_view mt_115 xs_mt_95">
         <div class="container">
             <div class="row wow fadeInUp">
@@ -134,19 +134,19 @@
                                                 <h6>${{ $item->quantity * $item->product->price }}</h6>
                                             </td>
 
-                                       
 
 
-                                        <td class="pro_icon">
-                                            <form id="{{ $item->id }}" action="{{ route('cart.remove', $item) }}"
-                                                method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" style="background: none">
-                                                    <a><i class="far fa-times"></i></a>
-                                                </button>
-                                            </form>
-                                        </td>
+
+                                            <td class="pro_icon">
+                                                <form id="{{ $item->id }}" action="{{ route('cart.remove', $item) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" style="background: none">
+                                                        <a><i class="far fa-times"></i></a>
+                                                    </button>
+                                                </form>
+                                            </td>
                                         </tr>
                                     @empty
                                         <h4>No items in the cart.</h4>
@@ -161,9 +161,19 @@
             </div>
             <div class=" cart_list_footer_button mt_60">
                 <div class="row wow fadeInUp">
-                    <div class="col-xl-8 col-md-6 col-lg-7">
-
-                    </div>
+                    @foreach ($Homes as $Home)
+                        <div class="col-xl-8 col-md-6 col-lg-7">
+                            <div class="add_banner_large"
+                                style="background: url({{ asset('storage/' . $Home->banner1) }});">
+                                <div class="text">
+                                    <h3>{{ $Home->title1 }}</h3>
+                                    <a href="{{ route('menu.index') }}"> order now 
+                                        <i class="fas fa-chevron-circle-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
                     <div class="col-xl-4 col-md-6 col-lg-5">
                         <div class="cart_summery">
                             <h6>total cart (02)</h6>
@@ -181,6 +191,6 @@
         </div>
     </section>
     <!--==========================
-                CART VIEW END
-            ===========================-->
+                    CART VIEW END
+                ===========================-->
 @endsection

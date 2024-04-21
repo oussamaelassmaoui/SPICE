@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\Product;
+use App\Models\Setting;
 use App\Models\CartItem;
+use App\Models\Information;
+use App\Models\SettingHome;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -45,7 +49,11 @@ class CartController extends Controller
         $totalCost = $cartItems->sum(function ($cartItem) {
             return $cartItem->quantity * $cartItem->product->price;
         });
-        return view('cart.index', compact('cartItems', 'totalCost','totalCartCount'));
+        $Information=Information::paginate(1);
+        $Homes=SettingHome::paginate(1);
+        $Settings=Setting::paginate(1);
+        $footers=Article::paginate(2);
+        return view('cart.index', compact('cartItems', 'totalCost','totalCartCount',"Information", "Homes", "Settings","footers"));
 
 
     }

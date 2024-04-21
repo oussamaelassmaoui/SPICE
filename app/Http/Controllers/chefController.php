@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\chef;
+use App\Models\Article;
+use App\Models\Setting;
+use App\Models\Information;
 use Illuminate\Http\Request;
 
 class chefController extends Controller
@@ -94,14 +97,18 @@ class chefController extends Controller
     public function show(Request $request,string $id)
     {
         
-        // $Categories = Category::withCount('Category')->get();
-        $Post=chef::paginate(4);
+       
+        
         $chef = chef::findOrFail($id);
         $totalCartCount = 0; 
         if ($request->user()) {
             $totalCartCount = $request->user()->cartItems()->count();
         }
-        return view('chefs.show', compact('chef','Post','Categories', 'totalCartCount')); 
+        $Settings=Setting::paginate(1);
+        $footers=Article::paginate(2);
+        $Information=Information::paginate(1);
+        return view('chefs.show', compact('chef','totalCartCount','Information','footers','Settings')); 
+        
     }
 
     /**

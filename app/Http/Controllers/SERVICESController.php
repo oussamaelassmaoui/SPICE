@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
+use App\Models\Setting;
 use App\Models\Services;
+use App\Models\Information;
 use Illuminate\Http\Request;
 
 class SERVICESController extends Controller
@@ -22,8 +25,11 @@ class SERVICESController extends Controller
         if ($request->user()) {
             $totalCartCount = $request->user()->cartItems()->count();
         }
+        $Information=Information::paginate(1);
         $SERVICES=Services::all();
-        return view('pages.SERVICES',compact('totalCartCount','SERVICES'));
+        $Settings=Setting::paginate(1);
+        $footers=Article::paginate(2);
+        return view('pages.SERVICES',compact('totalCartCount','SERVICES','Information',"Settings","footers"));
     }
     /**
      * Show the form for creating a new resource.
@@ -74,9 +80,12 @@ class SERVICESController extends Controller
         if ($request->user()) {
             $totalCartCount = $request->user()->cartItems()->count();
         }
+        $Information=Information::paginate(1);
         $SERVICES = Services::find($id);
         $Categories=Services::paginate(6);
-        return view('SERVICES.show', compact('SERVICES','totalCartCount', 'Categories'));
+        $Settings=Setting::paginate(1);
+        $footers=Article::paginate(2);
+        return view('SERVICES.show', compact('SERVICES','totalCartCount', 'Categories', 'Information',"Settings","footers"));
     }
 
     /**

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Setting;
+use App\Models\Information;
 use Illuminate\Http\Request;
 
 class BLOGSController extends Controller
@@ -17,7 +19,10 @@ class BLOGSController extends Controller
         if ($request->user()) {
             $totalCartCount = $request->user()->cartItems()->count();
         }
-        return view('pages.BLOGS',compact('totalCartCount', 'Articles'));
+        $Settings=Setting::paginate(1);
+        $footers=Article::paginate(2);
+        $Information=Information::paginate(1);
+        return view('pages.BLOGS',compact('totalCartCount', 'Articles', 'Information', 'Settings','footers'));
     }
 
     /**

@@ -4,7 +4,9 @@
     <!--==========================
                 BREADCRUMB AREA START
             ===========================-->
-    <section class="breadcrumb_area" style="background: url({{ asset('Frontend/images/breadcrumb_bg.jpg') }});">
+            @foreach ($Settings as $item )
+            <section class="breadcrumb_area" style="background: url({{ asset('storage/' . $item->banner_Global) }});">
+             @endforeach
         <div class="container">
             <div class="row wow fadeInUp">
                 <div class="col-12">
@@ -152,8 +154,9 @@
                         </div>
                         {{-- </div> --}}
                         <br>
+                        @foreach ($Settings as $item )
                         <div class="menu_details_banner">
-                            <img src="{{ asset('Frontend/images/details_banner_img.png') }}" alt="offer"
+                            <img src="{{ asset('storage/' . $item->banner1) }}" alt="offer"
                                 class="img-fluid w-100">
                             <div class="text">
                                 <h5>Get Up to 50% Off</h5>
@@ -166,6 +169,7 @@
                                 </a>
                             </div>
                         </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

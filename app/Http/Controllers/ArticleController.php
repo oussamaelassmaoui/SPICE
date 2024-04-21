@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Setting;
 use App\Models\Category;
+use App\Models\Information;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -77,7 +79,10 @@ class ArticleController extends Controller
         if ($request->user()) {
             $totalCartCount = $request->user()->cartItems()->count();
         }
-        return view('Articles.show', compact('Article','Post','Categories', 'totalCartCount')); 
+        $Settings=Setting::paginate(1);
+        $footers=Article::paginate(2);
+        $Information=Information::paginate(1);
+        return view('Articles.show', compact('Article','footers','Post','Categories', 'totalCartCount','Information','Settings')); 
     }
 
     /**

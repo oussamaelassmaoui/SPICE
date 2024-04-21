@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FAQ;
+use App\Models\Article;
+use App\Models\Setting;
+use App\Models\Information;
 use Illuminate\Http\Request;
 
 class FAQController extends Controller
@@ -15,7 +19,11 @@ class FAQController extends Controller
         if ($request->user()) {
             $totalCartCount = $request->user()->cartItems()->count();
         }
-        return view('pages.FAQ',compact('totalCartCount'));
+        $Settings=Setting::paginate(1);
+        $footers=Article::paginate(2);
+        $Information=Information::paginate(1);
+        $Faqs = FAQ::all();
+        return view('pages.FAQ',compact('totalCartCount', 'Information', 'Faqs', 'Settings','footers'));
     }
 
     /**

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\contact;
+use App\Models\Setting;
+use App\Models\Information;
 use Illuminate\Http\Request;
 
 class contactController extends Controller
@@ -26,7 +29,10 @@ class contactController extends Controller
         if ($request->user()) {
             $totalCartCount = $request->user()->cartItems()->count();
         }
-        return view('pages.contact',compact('totalCartCount'));
+        $Settings=Setting::paginate(1);
+        $footers=Article::paginate(2);
+        $Information=Information::paginate(1);
+        return view('pages.contact',compact('totalCartCount', 'Information', 'Settings','footers'));
     }
 
     /**
@@ -72,6 +78,12 @@ class contactController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+    public function destroyAll()
+    {
+        contact::truncate(); // Delete all records from the faqs table
+      
+        return redirect()->route('contact.index');
+    }
     public function destroy(string $id)
     {
         contact::findOrFail($id)->delete();

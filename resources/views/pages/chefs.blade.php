@@ -5,7 +5,9 @@
     <!--==========================
         BREADCRUMB AREA START
     ===========================-->
-    <section class="breadcrumb_area" style="background: url(Frontend/images/breadcrumb_bg.jpg);">
+    @foreach ($Settings as $item )
+    <section class="breadcrumb_area" style="background: url({{ asset('storage/' . $item->banner_Global) }});">
+     @endforeach
         <div class="container">
             <div class="row wow fadeInUp">
                 <div class="col-12">
@@ -31,134 +33,29 @@
     <section class="shefs pt_95 xs_pt_70">
         <div class="container">
             <div class="row">
+                @forelse ($chefs as $item)
                 <div class="col-xl-3 col-sm-6 col-lg-4 wow fadeInUp">
                     <div class="single_chef">
-                        <a href="chefs_details.html" class="single_chef_img">
-                            <img src="Frontend/images/chef_img_1.jpg" alt="Chef" class="img-fluid w-100">
-                            <span>Main Chef</span>
+                        <a href="{{ route('chefs.show',$item ) }}" class="single_chef_img">
+                            <img src="{{ asset('storage/' . $item->photo) }}" alt="Chef" class="img-fluid w-100">
+                            <span>{{$item->email}}</span>
                         </a>
                         <div class="single_chef_text">
-                            <a class="title" href="chefs_details.html">Nathaneal Down</a>
+                            <a class="title" href="{{ route('chefs.show',$item ) }}">{{$item->name}}</a>
                             <ul>
-                                <li><a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a class="linkedin" href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a class="facebook" href="{{$item->Facebook}}"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a class="twitter" href="{{$item->Twitter}}"><i class="fab fa-twitter"></i></a></li>
+                                <li><a class="instagram" href="{{$item->instagram}}"><i class="fab fa-instagram"></i></a></li>
+                                
                             </ul>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-sm-6 col-lg-4 wow fadeInUp">
-                    <div class="single_chef">
-                        <a href="chefs_details.html" class="single_chef_img">
-                            <img src="Frontend/images/chef_img_2.jpg" alt="Chef" class="img-fluid w-100">
-                            <span>Executive Chef</span>
-                        </a>
-                        <div class="single_chef_text">
-                            <a class="title" href="chefs_details.html">Pelican Steve</a>
-                            <ul>
-                                <li><a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a class="linkedin" href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-sm-6 col-lg-4 wow fadeInUp">
-                    <div class="single_chef">
-                        <a href="chefs_details.html" class="single_chef_img">
-                            <img src="Frontend/images/chef_img_3.jpg" alt="Chef" class="img-fluid w-100">
-                            <span>Master Chef</span>
-                        </a>
-                        <div class="single_chef_text">
-                            <a class="title" href="chefs_details.html">Dylan Meringue</a>
-                            <ul>
-                                <li><a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a class="linkedin" href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-sm-6 col-lg-4 wow fadeInUp">
-                    <div class="single_chef">
-                        <a href="chefs_details.html" class="single_chef_img">
-                            <img src="Frontend/images/chef_img_4.jpg" alt="Chef" class="img-fluid w-100">
-                            <span>Executive Chef</span>
-                        </a>
-                        <div class="single_chef_text">
-                            <a class="title" href="chefs_details.html">Fergus Douchebag</a>
-                            <ul>
-                                <li><a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a class="linkedin" href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-sm-6 col-lg-4 wow fadeInUp">
-                    <div class="single_chef">
-                        <a href="chefs_details.html" class="single_chef_img">
-                            <img src="Frontend/images/chef_img_5.jpg" alt="Chef" class="img-fluid w-100">
-                            <span>Executive Chef</span>
-                        </a>
-                        <div class="single_chef_text">
-                            <a class="title" href="chefs_details.html">Fergus Douchebag</a>
-                            <ul>
-                                <li><a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a class="linkedin" href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-sm-6 col-lg-4 wow fadeInUp">
-                    <div class="single_chef">
-                        <a href="chefs_details.html" class="single_chef_img">
-                            <img src="Frontend/images/chef_img_6.jpg" alt="Chef" class="img-fluid w-100">
-                            <span>Executive Chef</span>
-                        </a>
-                        <div class="single_chef_text">
-                            <a class="title" href="chefs_details.html">Fergus Douchebag</a>
-                            <ul>
-                                <li><a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a class="linkedin" href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-sm-6 col-lg-4 wow fadeInUp">
-                    <div class="single_chef">
-                        <a href="chefs_details.html" class="single_chef_img">
-                            <img src="Frontend/images/chef_img_7.jpg" alt="Chef" class="img-fluid w-100">
-                            <span>Executive Chef</span>
-                        </a>
-                        <div class="single_chef_text">
-                            <a class="title" href="chefs_details.html">Fergus Douchebag</a>
-                            <ul>
-                                <li><a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a class="linkedin" href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-sm-6 col-lg-4 wow fadeInUp">
-                    <div class="single_chef">
-                        <a href="chefs_details.html" class="single_chef_img">
-                            <img src="Frontend/images/chef_img_8.jpg" alt="Chef" class="img-fluid w-100">
-                            <span>Executive Chef</span>
-                        </a>
-                        <div class="single_chef_text">
-                            <a class="title" href="chefs_details.html">Fergus Douchebag</a>
-                            <ul>
-                                <li><a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a class="linkedin" href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                @empty
+                    <h4 style="color:red; text-align:center;">No Data Found!</h4>
+                @endforelse
+
+
                 <div class="pagination_area mt_60 wow fadeInUp">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-center">
@@ -178,6 +75,7 @@
                         </ul>
                     </nav>
                 </div>
+
             </div>
         </div>
     </section>

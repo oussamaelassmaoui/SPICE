@@ -76,25 +76,7 @@
                 <div class="col-xl-6 col-md-6">
                     <div class="header_right">
                         <ul>
-                            <li>
-                                <select class="select_js">
-                                    <option value="">English</option>
-                                    <option value="">Japanes</option>
-                                    <option value="">Korean</option>
-                                    <option value="">Urdu</option>
-                                    <option value="">Chines</option>
-                                    <option value="">Arabic</option>
-                                </select>
-                            </li>
-                            <li>
-                                <select class="select_js">
-                                    <option value="">$ USD</option>
-                                    <option value="">ট BDT</option>
-                                    <option value="">€ EUR</option>
-                                    <option value="">£ GBP</option>
-                                    <option value="">¥ JPY</option>
-                                </select>
-                            </li>
+                           
 
 
                             @guest
@@ -137,10 +119,11 @@
     <!--==========================
         MENU START
     ===========================-->
+    @foreach ($Settings as $item )
     <nav class="navbar navbar-expand-lg main_menu">
         <div class="container container_large">
             <a class="navbar-brand" href="index.html">
-                <img src="{{ asset('Frontend/images/logo.png') }}" alt="RESTINA" class="img-fluid w-100">
+                <img src="{{ asset('storage/' . $item->logo) }}" alt="RESTINA" class="img-fluid w-100">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -155,7 +138,7 @@
 
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="{{ route('about.index') }}">About</a>
+                        <a class="nav-link " href="{{route('about_list')}}">About</a>
 
                     </li>
                     <li class="nav-item">
@@ -197,7 +180,7 @@
             </div>
         </div>
     </nav>
-
+   
     <div class="menu_search_area">
         <form>
             <input type="text" placeholder="Search Item...">
@@ -206,7 +189,7 @@
         </form>
     </div>
 
-   
+    @endforeach
     <!--==========================
         MENU END
     ===========================-->
@@ -221,20 +204,28 @@
     ===========================-->
     <footer class="pt_100 mt_120 xs_mt_100">
         <div class="container">
+            @forelse ($Information as $item )    
             <div class="row justify-content-between wow fadeInUp">
                 <div class="col-lg-3 col-md-4">
                     <div class="footer_info">
-                        <a class="footer_logo" href="index.html">
-                            <img src="{{ asset('Frontend/images/footer_logo.png') }}" alt="RESTINA" class="img-fluid w-100">
+                        @foreach ($Settings as $se )
+                            <a class="footer_logo" href="/">
+                            <img src="{{ asset('storage/' . $se->logo) }}" alt="RESTINA" class="img-fluid w-100">
                         </a>
-                        <p>Cras incident lobotids feudist makes viramas sagittas eu valuta.</p>
+                        @endforeach
+                        
+                        <p>{{$item->address}}.</p>
                         <ul>
-                            <li><a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
-                            <li><a class="linkedin" href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                            <li><a class="facebook" href="{{$item->Facebook}}"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a class="twitter" href="{{$item->Twitter}}"><i class="fab fa-twitter"></i></a></li>
+                            <li><a class="linkedin" href="{{$item->linkedin}}"><i class="fab fa-linkedin-in"></i></a></li>
+                            <li><a class="instagram" href="{{$item->instagram}}"><i class="fab fa-instagram"></i></a></li>
                         </ul>
                     </div>
                 </div>
+                @empty
+                <h4>No Information Found!</h4>
+                @endforelse
                 <div class="col-lg-2 col-sm-6 col-md-4">
                     <div class="footer_link">
                         <h3>Our Menu</h3>
@@ -242,7 +233,7 @@
                             <li><a href="{{ route('Reservations.index') }}">Reservations</a></li>
                             <li><a href="{{ route('menu.index') }}">Menu</a></li>
                             <li><a href="{{ route('list_SERVICES') }}">SERVICES</a></li>
-                            <li><a href="{{route('chefs.index')}}">All Chef</a></li>
+                            <li><a href="{{route('chef.index')}}">All Chef</a></li>
                             <li><a href="{{ route('FAQ.index') }}">FAQ</a></li>
                           
                         </ul>
@@ -252,9 +243,8 @@
                     <div class="footer_link">
                         <h3>Resources</h3>
                         <ul>
-                            <li><a href="{{ route('about.index') }}">About</a></li>
-                            
-                            <li><a href="{{ route('BLOGS.index') }}">blog</a></li>
+                            <li><a href="{{route('about_list')}}">About</a></li>
+                            <li><a href="{{ route('BLOGS.index') }}">Blog</a></li>
                             <li><a href="{{ route('contact.create') }}">Contact</a></li>
                             <li><a href="{{ route('privacy_policy') }}">privacy policy</a></li>
                             <li><a href="{{ route('terms_condition') }}">terms condition</a></li>
@@ -265,26 +255,21 @@
                     <div class=" footer_post">
                         <h3>Recent Post</h3>
                         <ul>
+                            @forelse ($footers as  $item)
                             <li>
                                 <div class="img">
-                                    <img src="{{ asset('Frontend/images/footer_post_img_1.jpg') }}" alt="post"
+                                    <img src="{{ asset('storage/' . $item->photo1) }}" alt="post"
                                         class="img-fluid w-100">
                                 </div>
                                 <div class="text">
-                                    <p><i class="far fa-clock"></i> March 24, 2024</p>
-                                    <a href="#">THE WONDERS OF THAI CUISINE SWEET, SALTY & SOUR</a>
+                                    <p><i class="far fa-clock"></i>{{$item->created_at->format('M j, Y')}}</p>
+                                    <a href="{{ route('Articles.show',$item ) }}">{{$item->title}}</a>
                                 </div>
                             </li>
-                            <li>
-                                <div class="img">
-                                    <img src="{{ asset('Frontend/images/footer_post_img_2.jpg') }}" alt="post"
-                                        class="img-fluid w-100">
-                                </div>
-                                <div class="text">
-                                    <p><i class="far fa-clock"></i> March 24, 2024</p>
-                                    <a href="#">PAIRING WINE WITH INDIAN FOOD: TIPS FROM A SOMMELIER</a>
-                                </div>
-                            </li>
+                            @empty
+                               <h4>No Data Found!</h4>  
+                            @endforelse
+                            
                         </ul>
                     </div>
                 </div>

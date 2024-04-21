@@ -40,7 +40,7 @@
     <div class="col-md-12">
         <label for="validationCustom11" class="form-label label">Facebook</label>
         <div class="position-relative">
-            <input type="text" name="Facebook" class="form-control h-58 @error('Facebook') is-invalid @enderror"
+            <input type="url" name="Facebook" class="form-control h-58 @error('Facebook') is-invalid @enderror"
                 id="validationCustom11" value="{{ old('Facebook') }}" required>
 
         </div>
@@ -51,7 +51,7 @@
     <div class="col-md-12">
         <label for="validationCustom11" class="form-label label">Twitter</label>
         <div class="position-relative">
-            <input type="text" name="Twitter" class="form-control h-58 @error('Twitter') is-invalid @enderror"
+            <input type="url" name="Twitter" class="form-control h-58 @error('Twitter') is-invalid @enderror"
                 id="validationCustom11" value="{{ old('Twitter') }}" required>
 
         </div>
@@ -62,7 +62,7 @@
     <div class="col-md-12">
         <label for="validationCustom11" class="form-label label">youtube</label>
         <div class="position-relative">
-            <input type="text" name="youtube" class="form-control h-58 @error('youtube') is-invalid @enderror"
+            <input type="url" name="youtube" class="form-control h-58 @error('youtube') is-invalid @enderror"
                 id="validationCustom11" value="{{ old('youtube') }}" required>
 
         </div>
@@ -73,7 +73,7 @@
     <div class="col-md-12">
         <label for="validationCustom11" class="form-label label">instagram</label>
         <div class="position-relative">
-            <input type="text" name="instagram" class="form-control h-58 @error('instagram') is-invalid @enderror"
+            <input type="url" name="instagram" class="form-control h-58 @error('instagram') is-invalid @enderror"
                 id="validationCustom11" value="{{ old('instagram') }}" required>
 
         </div>
@@ -185,7 +185,7 @@
 
     <div class="col-lg-12">
         <div class="form-group">
-            <label class="label">File Upload photo 1</label>
+            <label class="label">File Upload photo Profil</label>
             <div class="form-control h-100 text-center position-relative p-4 p-lg-5">
                 <div class="product-upload">
                     <label for="file-upload" class="file-upload mb-0">

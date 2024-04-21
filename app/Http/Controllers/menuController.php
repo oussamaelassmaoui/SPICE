@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\Product;
+use App\Models\Setting;
+use App\Models\Information;
 use Illuminate\Http\Request;
 
 class menuController extends Controller
@@ -18,7 +21,10 @@ class menuController extends Controller
         }
         $products=Product::all();
         $RECENT_PRODUCTS=Product::paginate(4);
-        return view('pages.menu',compact('products', 'RECENT_PRODUCTS','totalCartCount'));
+        $Information=Information::paginate(1);
+        $Settings=Setting::paginate(1);
+        $footers=Article::paginate(2);
+        return view('pages.menu',compact('products', 'RECENT_PRODUCTS','totalCartCount', 'Information', 'Settings','footers'));
     }
 
     /**

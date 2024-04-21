@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\size;
 use App\Models\option;
 use App\Models\Review;
+use App\Models\Article;
 use App\Models\Product;
+use App\Models\Setting;
 use App\Models\Category;
+use App\Models\Information;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -109,9 +112,11 @@ class ProductController extends Controller
         $productsWithReviewCount = Review::where('product_id', $id)->count();
         $Categories=Category::all();
         $RECENT_PRODUCTS=Product::paginate(14);
-        
-        
-        return view('products.show', compact('product', 'RECENT_PRODUCTS', 'Categories', 'productsWithReviewCount','Reviews','totalCartCount'));
+        $Information=Information::paginate(1);
+        $Settings=Setting::paginate(1);
+        $footers=Article::paginate(2);
+        return view('products.show', compact('product', 'RECENT_PRODUCTS', 'Categories',
+         'productsWithReviewCount','Reviews','totalCartCount','Information',"Settings","footers"));
     }
 
     /**

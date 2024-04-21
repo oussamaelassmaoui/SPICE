@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Product;
+use App\Models\Setting;
+use App\Models\Information;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 
@@ -18,9 +20,12 @@ class RESERVATIONSController extends Controller
         if ($request->user()) {
             $totalCartCount = $request->user()->cartItems()->count();
         }
+        $Information=Information::paginate(1);
         $Articles=Article::all();
         $products=Product::all();
-        return view('pages.RESERVATIONS',compact('totalCartCount', 'Articles', 'products'));
+        $Settings=Setting::paginate(1);
+        $footers=Article::paginate(2);
+        return view('pages.RESERVATIONS',compact('totalCartCount', 'Articles', 'products', 'Information', 'Settings','footers'));
     }
     public function list()
     {

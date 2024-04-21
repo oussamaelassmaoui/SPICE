@@ -140,26 +140,7 @@
                                 option List
                             </a>
                         </li>
-                        <li class="menu-item">
-                            <a href="customers-2.html" class="menu-link">
-                                Customers
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="cart.html" class="menu-link">
-                                Cart
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="checkout.html" class="menu-link">
-                                Checkout
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="sellers.html" class="menu-link">
-                                Sellers
-                            </a>
-                        </li>
+                        
                     </ul>
                 </li>
                 <li class="menu-item">
@@ -210,30 +191,32 @@
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="blogs.html" class="menu-link">
-                                Blogs
+                            <a href="{{route('Information.index')}}" class="menu-link">
+                               Information
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="blog-details.html" class="menu-link">
-                                Blog Details
+                            <a href="{{route('Information.create')}}" class="menu-link">
+                                create Information
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="gallery.html" class="menu-link">
-                                Gallery
+                            <a href="{{route('Testimonial.index')}}" class="menu-link">
+                                Testimonial
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="contact-us.html" class="menu-link">
-                                Contact Us
+                            <a href="{{route('faqs.index')}}" class="menu-link">
+                                FAQ
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="404-error.html" class="menu-link">
-                                404 Error Page
+                            <a href="{{route('faqs.create')}}" class="menu-link">
+                                Create FAQ
                             </a>
                         </li>
+                        
+                        
                     </ul>
                 </li>
            
@@ -250,8 +233,29 @@
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="profile-3.html" class="menu-link">
-                                Profile
+                            <a href="{{route('Home.index')}}" class="menu-link">
+                                Settings Home
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="{{route('about.index')}}" class="menu-link">
+                                about us
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a href="{{route('privacypolicy.index')}}" class="menu-link">
+                                privacy policy
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="{{route('termsCondition.index')}}" class="menu-link">
+                                terms Condition
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="{{route('Settings.index')}}" class="menu-link">
+                                Settings
                             </a>
                         </li>
                     </ul>
@@ -309,40 +313,7 @@
                             <ul
                                 class="d-flex align-items-center justify-content-center justify-content-sm-end ps-0 mb-0 list-unstyled">
                                
-                                <li class="header-right-item">
-                                    <div class="dropdown notifications email">
-                                        <button class="btn btn-secondary border-0 p-0 position-relative"
-                                            type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i data-feather="mail"></i>
-                                        </button>
-                                        <div class="dropdown-menu dropdown-lg  border-0 p-4">
-                                            <h5
-                                                class="m-0 p-0 fw-bold d-flex justify-content-between align-items-center border-bottom pb-3 mb-4">
-                                                <span>Email </span>
-                                                
-                                            </h5>
-                                            <div class="notification-menu">
-                                                <a href="notification.html" class="dropdown-item p-0">
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="flex-shrink-0">
-                                                            <img src="Backend/images/pdf.svg" alt="pdf">
-                                                        </div>
-                                                        <div class="flex-grow-1 ms-3">
-                                                            <h4>Help/Support Desk</h4>
-                                                            <span>11:47 PM Wednesday</span>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                           
-                                            <a href="notification.html"
-                                                class="dropdown-item text-center text-primary d-block view-all pt-3 pb-0 fw-semibold">
-                                                View All
-                                                <i data-feather="chevron-right"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </li>
+                               
                                 <li class="header-right-item">
                                     <div class="dropdown notifications noti">
                                         <a href="/">

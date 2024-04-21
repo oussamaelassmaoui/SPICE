@@ -6,7 +6,9 @@
     <!--==========================
         BREADCRUMB AREA START
     ===========================-->
-    <section class="breadcrumb_area" style="background: url(Frontend/images/breadcrumb_bg.jpg);">
+    @foreach ($Settings as $item )
+    <section class="breadcrumb_area" style="background: url({{ asset('storage/' . $item->banner_Global) }});">
+     @endforeach
         <div class="container">
             <div class="row wow fadeInUp">
                 <div class="col-12">
@@ -114,12 +116,12 @@
             <div class="row">
                 <div class="col-xl-4 col-lg-5 wow fadeInLeft">
                     <div class="new_recipes_text">
+                        @foreach ($Settings as $item )
                         <div class="section_heading heading_left mb_25">
                             <h5>New Recipes</h5>
-                            <h2>Test Our All New Recipes</h2>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                                has been the industry's standard dummy text ever.</p>
+                            {!!$item->New_Recipes!!}
                         </div>
+                         @endforeach
                     </div>
                 </div>
                 <div class="col-xl-8 col-lg-7">

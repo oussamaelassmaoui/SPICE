@@ -5,15 +5,16 @@
     <!--==========================
             BANNER START
         ===========================-->
-    <section class="banner" style="background: url(Frontend/images/banner_bg.jpg);">
+    @foreach ($Homes as $Home )
+        
+  
+    <section class="banner" style="background: url({{ asset('storage/' . $Home->banner_Global) }});">
         <div class="container container_large">
             <div class="row justify-content-between align-items-center">
                 <div class="col-xxl-6 col-lg-6 col-xl-6 col-md-9">
                     <div class="banner_text wow fadeInUp">
                         <h5>Delicious Food </h5>
-                        <h1>Special Foods for your Eating </h1>
-                        <p>Commodo ullamcorper a lacus vestibulum sed arcu non. Non blandit massa enim
-                            Sem viverra aliquet eget sit amet tellus cras</p>
+                        {!!$Home->DELICIOUS_FOOD!!}
                         {{-- <form>
                             <input type="text" placeholder="Enter Your Location">
                             <div class="banner_btn_area d-flex flex-wrap align-items-center">
@@ -27,7 +28,7 @@
                 <div class="col-xxl-5 col-lg-6 col-xl-6">
                     <div class="banner_img wow fadeInRight">
                         <div class="img">
-                            <img src="Frontend/images/banner_img.png" alt="banner" class="img-fluid w-100">
+                            <img src="{{ asset('storage/' . $Home->photo_Global) }}" alt="banner" class="img-fluid w-100">
                         </div>
                     </div>
                 </div>
@@ -38,7 +39,7 @@
             BANNER END
         ===========================-->
 
-
+  
     <!--==========================
             CATEGORY START
         ===========================-->
@@ -78,17 +79,17 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-8 col-lg-7 wow fadeInUp">
-                    <div class="add_banner_large" style="background: url(Frontend/images/large_banner_img_1.jpg);">
+                    <div class="add_banner_large" style="background: url({{ asset('storage/' . $Home->banner1) }});">
                         <div class="text">
-                            <h3>The best Burger place in town</h3>
+                            <h3>{{$Home->title1}}</h3>
                             <a href="{{ route('menu.index') }}"> order now <i class="fas fa-chevron-circle-right"></i> </a>
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-5 wow fadeInUp">
-                    <div class="add_banner_small" style="background: url(Frontend/images/small_banner_img_1.jpg);">
+                    <div class="add_banner_small" style="background: url({{ asset('storage/' . $Home->banner2) }});">
                         <div class="text">
-                            <h3>Great Value Mixed Drinks</h3>
+                            <h3>{{$Home->title2}}</h3>
                             <a href="{{ route('menu.index') }}"> order now <i class="fas fa-chevron-circle-right"></i> </a>
                         </div>
                     </div>
@@ -293,13 +294,15 @@
             ADD BANNER FULL START
         ===========================-->
     <section class="add_banner_full mt_140 xs_mt_100 pt_155 xs_pt_100 pb_155 xs_pb_100"
-        style="background: url(Frontend/images/add_banner_full_bg.jpg);">
+        style="background: url({{ asset('storage/' . $Home->banner_TODAY) }});">
         <div class="container">
             <div class="row">
                 <div class="col-xl-5 col-md-6 wow fadeInLeft">
                     <div class="add_banner_full_text">
                         <h4>Today special offer</h4>
-                        <h2>Delicious Food with us.</h2>
+                        {{-- <h2>  --}}
+                            {!!$Home->TODAY_SPECIAL_OFFER!!} .
+                        {{-- </h2> --}}
                         <a class="common_btn" href="{{ route('menu.index') }}">
                             <span class="icon">
                                 <img src="Frontend/images/cart_icon_1.png" alt="order" class="img-fluid w-100">
@@ -307,7 +310,7 @@
                             order now
                         </a>
                         <div class="img">
-                            <img src="Frontend/images/add_banner_full_img.png" alt="add banner" class="img-fluid w-100">
+                            <img src="{{ asset('storage/' . $Home->photo1) }}" alt="add banner" class="img-fluid w-100">
                         </div>
                     </div>
                 </div>
@@ -327,13 +330,12 @@
             <div class="row justify-content-between">
                 <div class="col-xxl-5 col-md-6 col-lg-5 wow fadeInLeft">
                     <div class="app_download_img">
-                        <img src="Frontend/images/download_img.png" alt="download" class="img-fluid w-100">
+                        <img src="{{ asset('storage/' . $Home->photo_Download1) }}" alt="download" class="img-fluid w-100">
                     </div>
                 </div>
                 <div class="col-xxl-5 col-md-6 col-lg-6 wow fadeInRight">
                     <div class="app_download_text">
-                        <h2>Are you Ready to Start your Order?</h2>
-                        <p>Commodo ullamcorper lacus vestibulum sed Non blandit massa enim.</p>
+                       {!!$Home->Download!!}
                         <ul class="d-flex flex-wrap">
                             <li>
                                 <a class="common_btn" href="#">
@@ -374,72 +376,29 @@
                 </div>
             </div>
             <div class="row">
+                @forelse ($chefs as $item)
                 <div class="col-xl-3 col-sm-6 col-lg-4 wow fadeInUp">
                     <div class="single_chef">
-                        <a href="chefs_details.html" class="single_chef_img">
-                            <img src="Frontend/images/chef_img_1.jpg" alt="Chef" class="img-fluid w-100">
-                            <span>Main Chef</span>
+                        <a href="{{ route('chefs.show',$item ) }}" class="single_chef_img">
+                            <img src="{{ asset('storage/' . $item->photo) }}" alt="Chef" class="img-fluid w-100">
+                            <span>{{$item->email}}</span>
                         </a>
                         <div class="single_chef_text">
-                            <a class="title" href="chefs_details.html">Nathaneal Down</a>
+                            <a class="title" href="{{ route('chefs.show',$item ) }}">{{$item->name}}</a>
                             <ul>
-                                <li><a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a class="linkedin" href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a class="facebook" href="{{$item->Facebook}}"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a class="twitter" href="{{$item->Twitter}}"><i class="fab fa-twitter"></i></a></li>
+                                <li><a class="instagram" href="{{$item->instagram}}"><i class="fab fa-instagram"></i></a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-sm-6 col-lg-4 wow fadeInUp">
-                    <div class="single_chef">
-                        <a href="chefs_details.html" class="single_chef_img">
-                            <img src="Frontend/images/chef_img_2.jpg" alt="Chef" class="img-fluid w-100">
-                            <span>Executive Chef</span>
-                        </a>
-                        <div class="single_chef_text">
-                            <a class="title" href="chefs_details.html">Pelican Steve</a>
-                            <ul>
-                                <li><a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a class="linkedin" href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-sm-6 col-lg-4 wow fadeInUp">
-                    <div class="single_chef">
-                        <a href="chefs_details.html" class="single_chef_img">
-                            <img src="Frontend/images/chef_img_3.jpg" alt="Chef" class="img-fluid w-100">
-                            <span>Master Chef</span>
-                        </a>
-                        <div class="single_chef_text">
-                            <a class="title" href="chefs_details.html">Dylan Meringue</a>
-                            <ul>
-                                <li><a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a class="linkedin" href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-sm-6 col-lg-4 wow fadeInUp">
-                    <div class="single_chef">
-                        <a href="chefs_details.html" class="single_chef_img">
-                            <img src="Frontend/images/chef_img_4.jpg" alt="Chef" class="img-fluid w-100">
-                            <span>Executive Chef</span>
-                        </a>
-                        <div class="single_chef_text">
-                            <a class="title" href="chefs_details.html">Fergus Douchebag</a>
-                            <ul>
-                                <li><a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a class="linkedin" href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                @empty
+                    <h4>No Data Found!</h4>
+                @endforelse
+                
                 <div class="col-12 text-center mt_60 wow fadeInUp">
-                    <a class="common_btn" href="{{ route('chefs.index') }}">
+                    <a class="common_btn" href="{{ route('chef.index') }}">
                         <span class="icon">
                             <img src="Frontend/images/eye.png" alt="order" class="img-fluid w-100">
                         </span>
@@ -457,13 +416,14 @@
     <!--==========================
             TESTIMONIAL START
         ===========================-->
-    <section class="testimonial mt_140 xs_mt_100" style="background: url(Frontend/images/testimonial_bg.jpg);">
+    <section class="testimonial mt_140 xs_mt_100" style="background: url({{ asset('storage/' . $Home->banner_testimonials) }});">
         <div class="testimonial_overlay pt_250 xs_pt_100">
             <div class="container mt_20">
                 <div class="row">
                     <div class="col-md-9 wow fadeInUp">
                         <div class="testimonial_content">
                             <div class="row testi_slider">
+                                @forelse ($Testimonials as $item )
                                 <div class="col-12">
                                     <div class="single_testimonial">
                                         <p class="rating">
@@ -473,46 +433,27 @@
                                             <i class="fas fa-star"></i>
                                             <i class="fas fa-star"></i>
                                         </p>
-                                        <p class="description">"I love that solvency lets us manage everything in one
-                                            place. It's super helpful to be able to listen to voice samples, upload our
-                                            own lists, and find quality salespeople that can grow with our team."</p>
+                                        <p class="description">"{{$item->text}}"</p>
                                         <div class="single_testimonial_footer">
                                             <div class="img">
-                                                <img src="Frontend/images/client_img_1.png" alt="clien"
+                                                <img src="{{ asset('storage/' . $item->photo) }}" alt="clien"
                                                     class="img-fluis w-100">
                                             </div>
-                                            <h3>Indigo Violet <span>Co - Founder</span></h3>
+                                            <h3>{{$item->name}}</h3>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12">
-                                    <div class="single_testimonial">
-                                        <p class="rating">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </p>
-                                        <p class="description">"I love that solvency lets us manage everything in one
-                                            place. It's super helpful to be able to listen to voice samples, upload our
-                                            own lists, and find quality salespeople that can grow with our team."</p>
-                                        <div class="single_testimonial_footer">
-                                            <div class="img">
-                                                <img src="Frontend/images/client_img_2.png" alt="client"
-                                                    class="img-fluis w-100">
-                                            </div>
-                                            <h3>jihan ahmed <span>Co - Founder</span></h3>
-                                        </div>
-                                    </div>
-                                </div>
+                                @empty
+                                    <h4>No Testimony Available.</h4>
+                                @endforelse
+                               
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="testimonial_video">
                             <a class="venobox play_btn" data-autoplay="true" data-vbtype="video"
-                                href="https://www.youtube.com/embed/U0e5OuHNksA">
+                                href="{{$Home->url_video}}">
                                 <i class="fas fa-play"></i>
                             </a>
                         </div>
@@ -529,38 +470,40 @@
     <!--==========================
             COUNTER START
         ===========================-->
+  @foreach ($Information as $item)
     <section class="counter_area">
         <div class="counter_bg pt_30 pb_35">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3 col-sm-6 wow fadeInUp">
                         <div class="single_counter">
-                            <h2 class="counter">45</h2>
-                            <span>Dishes</span>
+                            <h2 class="counter">{{$item->YEARS_EXPERIENCE}}</h2> 
+                            <span>experience</span>
                         </div>
                     </div>
                     <div class="col-lg-3 col-sm-6 wow fadeInUp">
                         <div class="single_counter">
-                            <h2 class="counter">68</h2>
-                            <span>Location</span>
+                            <h2 class="counter">{{$item->TEAM_MEMBER}}</h2>
+                            <span>Member</span>
                         </div>
                     </div>
                     <div class="col-lg-3 col-sm-6 wow fadeInUp">
                         <div class="single_counter">
-                            <h2 class="counter">32</h2>
+                            <h2 class="counter">{{$totalchef}} </h2>
                             <span>Chefs</span>
                         </div>
                     </div>
                     <div class="col-lg-3 col-sm-6 wow fadeInUp">
                         <div class="single_counter">
-                            <h2 class="counter">120</h2>
-                            <span>Cities</span>
+                            <h2 class="counter">{{$item->OUR_CLIENTS}}</h2>
+                            <span>CLIENTS</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    @endforeach
     <!--==========================
             COUNTER END
         ===========================-->
@@ -597,7 +540,7 @@
                                     </li>
                                     <li>BY {{ $item->user->name }}</li>
                                 </ul>
-                                <a class="title" href="{{ route('Articles.show', $item) }}">{{ $item->title }}</a>
+                                <a class="title" href="{{ route('Articles.show', $item) }}">{{ $item->title }} ?</a>
                                 <a class="read_btn" href="{{ route('Articles.show', $item) }}">Read More <i
                                         class="far fa-arrow-right"></i></a>
                             </div>
@@ -612,4 +555,5 @@
         </div>
        
     </section>
+    @endforeach
 @endsection

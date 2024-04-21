@@ -21,6 +21,13 @@
         <div class="card-body p-4">
             <div class="d-sm-flex justify-content-between text-center align-items-center border-bottom pb-20 mb-20">
                 <h4 class="fw-semibold fs-18 mb-sm-0">Email List</h4>
+                <div class="d-sm-flex align-items-center">
+                    <form action="{{ route('contact.destroy-all') }}" method="POST" class="text-decoration-none text-gray-light ms-1">
+                        @csrf
+                        @method('DELETE')
+                        <input type="submit" value="Remove all" class="btn btn-danger btn-sm px-3">
+                    </form>
+                </div>
                 
             </div>
             <div class="default-table-area recent-files-list">

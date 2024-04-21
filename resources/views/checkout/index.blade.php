@@ -2,7 +2,9 @@
 
 @section('content')
 @include('sweetalert::alert')
-<section class="breadcrumb_area" style="background: url('Frontend/images/breadcrumb_bg.jpg');">
+@foreach ($Settings as $item )
+    <section class="breadcrumb_area" style="background: url({{ asset('storage/' . $item->banner_Global) }});">
+     @endforeach
     <div class="container">
         <div class="row wow fadeInUp">
             <div class="col-12">

@@ -25,15 +25,15 @@ class RESERVATIONSController extends Controller
             $totalCartCount = $request->user()->cartItems()->count();
         }
         $Information=Information::paginate(1);
-        $Articles=Article::all();
-        $products=Product::all();
+        $Articles=Article::latest()->paginate(3);
+        $products=Product::latest()->paginate(21);
         $Settings=Setting::paginate(1);
         $footers=Article::paginate(2);
         return view('pages.RESERVATIONS',compact('totalCartCount', 'Articles', 'products', 'Information', 'Settings','footers'));
     }
     public function list()
     {
-        $Reservations=Reservation::all();
+        $Reservations=Reservation::latest()->get();
         return view('Reservations.index',compact('Reservations'));
     }
     /**

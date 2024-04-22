@@ -80,7 +80,7 @@ class ProfileController extends Controller
         $Information=Information::paginate(1);
         $Settings=Setting::paginate(1);
         $footers=Article::paginate(2);
-        $OrderItems = $request->user()->orderItems()->with('Order')->paginate(10);
+        $OrderItems = $request->user()->orderItems()->with('Order')->latest()->paginate(10);
         return view('profile.My_Orders', compact('orders','OrderItems','totalCartCount','Information',"Settings","footers")
         
     );

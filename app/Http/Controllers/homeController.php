@@ -21,10 +21,10 @@ class homeController extends Controller
         }
         $totalchef = chef::count();
         $Testimonials=Testimonial::all();
-        $Articles=Article::paginate(3);
+        $Articles=Article::latest()->paginate(3);
         $Categories=Category::all();
-        $products=Product::paginate(12);
-        $chefs=chef::paginate(4);
+        $products=Product::latest()->paginate(12);
+        $chefs=chef::latest()->paginate(4);
         $Information=Information::paginate(1);
         $Homes=SettingHome::paginate(1);
         $Settings=Setting::paginate(1);

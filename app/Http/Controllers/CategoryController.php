@@ -70,8 +70,7 @@ class CategoryController extends Controller
             $totalCartCount = $request->user()->cartItems()->count();
         }
         $category = Category::findOrfail($id);
-        
-        $products =  $category->product()->paginate(21);
+        $products =  $category->product()->latest()->paginate(21);
         $Categories=Category::all();
         $Information=Information::paginate(1);
         $Settings=Setting::paginate(1);

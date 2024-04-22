@@ -28,7 +28,7 @@ class WishlistController extends Controller
         $Settings=Setting::paginate(1);
         $footers=Article::paginate(2);
     // $wishlistItems = Wishlist::with('product')->get();
-    $wishlistItems =$request->user()->wishlistItems()->with('product')->paginate(21);
+    $wishlistItems =$request->user()->wishlistItems()->with('product')->latest()->paginate(21);
     return view('profile.Wish_List', compact('wishlistItems', 'totalCartCount', 'Information',"Settings","footers"));
     }
     public function addToWishlist(Product $product)

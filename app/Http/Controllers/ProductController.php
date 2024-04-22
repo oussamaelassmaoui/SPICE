@@ -134,7 +134,7 @@ class ProductController extends Controller
         $Reviews = Review::where('product_id', $id)->get();
         $productsWithReviewCount = Review::where('product_id', $id)->count();
         $Categories=Category::all();
-        $RECENT_PRODUCTS=Product::paginate(14);
+        $RECENT_PRODUCTS=Product::latest()->paginate(14);
         $Information=Information::paginate(1);
         $Settings=Setting::paginate(1);
         $footers=Article::paginate(2);

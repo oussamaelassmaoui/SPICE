@@ -4,9 +4,10 @@
     <!--==========================
         SIGN IN START
     ===========================-->
-    @foreach ($Settings as $item )
+   
     <section class="sign_in">
         <div class="row justify-content-center">
+            @foreach ($Settings as $item )
             <div class="col-xl-6 col-lg-6 wow fadeInLeft">
                 <div class="sign_in_img">
                     <img src="{{ asset('storage/' . $item->Sign_In_photo) }}" alt="sign in" class="img-fluid w-100">
@@ -17,6 +18,7 @@
                     <a class="sign_in_logo" href="/">
                         <img src="{{ asset('storage/' . $item->logo) }}" alt="sign in" class="img-fluid w-100">
                     </a>
+                    @endforeach
                     <h2>Welcome back, sign in</h2>
                     <p class="description">Sign in to your account and make recharges. payments and bookings faster</p>
                     <form method="POST" action="{{ route('login') }}">
@@ -73,7 +75,7 @@
             </div>
         </div>
     </section>
-    @endforeach
+    
     <!--==========================
         SIGN IN END
     ===========================-->

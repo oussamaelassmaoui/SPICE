@@ -20,7 +20,8 @@ class menuController extends Controller
         if ($request->user()) {
             $totalCartCount = $request->user()->cartItems()->count();
         }
-        $products=Product::paginate(20);
+
+        $products=Product::latest()->paginate(20);
         $RECENT_PRODUCTS=Product::paginate(4);
         $Information=Information::paginate(1);
         $Settings=Setting::paginate(1);

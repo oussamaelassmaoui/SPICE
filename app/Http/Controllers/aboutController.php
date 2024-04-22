@@ -30,7 +30,7 @@ class aboutController extends Controller
             $totalCartCount = $request->user()->cartItems()->count();
         }
         $chefs=chef::paginate(4);
-        $Articles=Article::paginate(3);
+        $Articles=Article::latest()->paginate(3);
         $Information=Information::paginate(1);
         $Testimonials=Testimonial::all();
         $abouts=about::paginate(1);

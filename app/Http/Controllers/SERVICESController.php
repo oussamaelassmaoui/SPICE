@@ -19,7 +19,7 @@ class SERVICESController extends Controller
    }
     public function index()
     {
-        $SERVICES=Services::all();
+        $SERVICES=Services::latest()->get();
         return view('SERVICES.index',compact('SERVICES'));
     }
 
@@ -30,7 +30,7 @@ class SERVICESController extends Controller
             $totalCartCount = $request->user()->cartItems()->count();
         }
         $Information=Information::paginate(1);
-        $SERVICES=Services::paginate(21);
+        $SERVICES=Services::latest()->paginate(21);
         $Settings=Setting::paginate(1);
         $footers=Article::paginate(2);
         return view('pages.SERVICES',compact('totalCartCount','SERVICES','Information',"Settings","footers"));

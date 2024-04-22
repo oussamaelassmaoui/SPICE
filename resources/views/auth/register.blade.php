@@ -7,19 +7,21 @@
     <!--==========================
         SIGN UP START
     ===========================-->
-    @foreach ($Settings as $item )
+    
     <section class="sign_up sign_in">
         <div class="row justify-content-center">
             <div class="col-xl-6 col-lg-6 wow fadeInLeft">
+                @foreach ($Settings as $item )
                 <div class="sign_in_img">
                     <img src="{{ asset('storage/' . $item->Sign_Up_photo) }}" alt="sign in" class="img-fluid w-100">
                 </div>
             </div>
             <div class="col-xl-6 col-md-10 col-lg-6 wow fadeInRight">
                 <div class="sign_in_form">
-                    <a class="sign_in_logo" href="index.html">
+                    <a class="sign_in_logo" href="/">
                         <img src="{{ asset('storage/' . $item->logo) }}" alt="sign in" class="img-fluid w-100">
                     </a>
+                    @endforeach
                     <h2>Create Account</h2>
                     <p class="description">Please Enter your Email Address to Start your Online Application</p>
                     <form method="POST" action="{{ route('register') }}">
@@ -79,7 +81,7 @@
             </div>
         </div>
     </section>
-    @endforeach
+   
     <!--==========================
         SIGN UP END
     ===========================-->

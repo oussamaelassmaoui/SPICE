@@ -119,12 +119,14 @@
     <!--==========================
         MENU START
     ===========================-->
-    @foreach ($Settings as $item )
+   
     <nav class="navbar navbar-expand-lg main_menu">
         <div class="container container_large">
+            @foreach ($Settings as $item )
             <a class="navbar-brand" href="/">
                 <img src="{{ asset('storage/' . $item->logo) }}" alt="RESTINA" class="img-fluid w-100">
             </a>
+            @endforeach
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -190,7 +192,7 @@
         
     </div>
 
-    @endforeach
+    
     <!--==========================
         MENU END
     ===========================-->

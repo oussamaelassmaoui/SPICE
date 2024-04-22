@@ -15,7 +15,7 @@ class BLOGSController extends Controller
     
     public function index(Request $request)
     {
-        $Articles=Article::paginate(21);
+        $Articles=Article::latest()->paginate(21);
         $totalCartCount = 0; // Default value
         if ($request->user()) {
             $totalCartCount = $request->user()->cartItems()->count();
